@@ -1,16 +1,104 @@
-{% load widget_tweaks %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css"
+      rel="stylesheet"
+    />
+    <script
+    src="https://kit.fontawesome.com/6c427772af.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'accounts/css/login.css' %}"
+  />
+    
+  </head>
+  <body class="body">
+    <!-- Navbar with a navbar-item as dropdown -->
+    <nav class="navbar">
+      <!-- Navbar brand -->
+      <a href="#" class="navbar-brand">
+        <img src="..." alt="..." />
+      </a>
+      <!-- Navbar text -->
+      <span class="navbar-text ml-5">
+        <!-- ml-5 = margin-left: 0.5rem (5px) -->
+        <span class="badge text-monospace">v3.0</span>
+        <!-- text-monospace = font-family shifted to monospace -->
+      </span>
+      <!-- Navbar nav -->
+      <ul class="navbar-nav ml-auto">
+        <!-- ml-auto = margin-left: auto -->
+        <li class="nav-item active">
+          <a href="#" class="nav-link">Docs</a>
+        </li>
+        <li class="nav-item dropdown with-arrow">
+          <a
+            class="nav-link"
+            data-toggle="dropdown"
+            id="nav-link-dropdown-toggle"
+          >
+            <img src="https://img.icons8.com/wired/64/000000/cat-profile.png" />
+            <i class="fa fa-angle-down ml-5" aria-hidden="true"></i>
+            <!-- ml-5= margin-left: 0.5rem (5px) -->
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-right"
+            aria-labelledby="nav-link-dropdown-toggle"
+          >
+            <a href="#" class="dropdown-item">API builder</a>
+            <a href="#" class="dropdown-item">Functions</a>
 
-<form method="POST">
-{% csrf_token %}
-{% for fields in form.visible_fields %}
-            <div class="form-group">
-                {% render_field fields class="form-control" placeholder=fields.label %}
-                <ul class="errorlist">
-                    {% for err in fields.errors %}
-                    <li>{{ err }}</li>
-                    {% endfor %}
-                </ul>
+            <a href="#" class="dropdown-item">
+              Analytics
+              <strong class="badge badge-success float-right">New</strong>
+              <!-- float-right = float: right -->
+            </a>
+
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-content">
+              <a href="#" class="btn btn-block" role="button">
+                See all products
+                <i class="fa fa-angle-right ml-5" aria-hidden="true"></i>
+                <!-- ml-5= margin-left: 0.5rem (5px) -->
+              </a>
             </div>
-        {% endfor %}
-<input type="submit">
-</form>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Requires halfmoon.js for the dropdown -->
+    <script src="path/to/halfmoon.js"></script>
+    <center>
+      {% load widget_tweaks %}
+      <div class="login-box">
+        <div class="content">
+          <h1 class="insta"><i class="fab fa-instagram"></i>mynstagram</h1>
+          <form method="POST" class="w-400 mw-full">
+            {% csrf_token %} {% for fields in form.visible_fields %}
+            <div class="form-group">
+              {% render_field fields class="form-control"
+              placeholder=fields.label %}
+              <ul class="errorlist">
+                {% for err in fields.errors %}
+                <li>{{ err }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endfor %}
+            <input type="submit" class="submit" />
+          </form>
+        </div>
+      </div>
+    </center>
+  </body>
+</html>
